@@ -143,9 +143,9 @@ mutation {
 
 - **Axel Alexander ** - _web site_ - [contact and contracts](http://axel-dev.herokuapp.com/)
 
-  | Front | HTML | CSS    | VueJS | React |
-  | ----- | ---- | ------ | ----- | ----- |
-  | Back  | C#   | python | Rails | go    |
+  | Front | HTML | CSS    | VueJS | React | React |
+  | ----- | ---- | ------ | ----- | ----- | ----- |
+  | Back  | c#   | python | rails | go    | php   |
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
