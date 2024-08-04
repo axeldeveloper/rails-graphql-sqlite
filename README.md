@@ -1,57 +1,43 @@
 # Rails and Graphql
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-- Ruby version
-
-- System dependencies
-
-- Configuration
-
-- Database creation
-
-- Database initialization
-
-- How to run the test suite
-
-- Services (job queues, cache servers, search engines, etc.)
-
-- Deployment instructions
+# Peoject 
+ - rails 
+ - sqlite
+ - graphql
 
 - ...
 
-# Step 1
+# create project local
+```sh
+$ gem install bundler
 
-gem install bundler
+$ bundle install rails
 
-bundle install rails
+$ rails new graphql_test --database=postgresql
 
-rails new graphql_test --database=postgresql
+$ rake db:create
 
-rake db:create
+$ add gem 'graphql'
 
-add gem 'graphql'
+$ bundle install
 
-bundle install
+$ rails generate graphql:install
 
-rails generate graphql:install
+$ rails generate model Author first_name:string last_name:string date_of_birth:date --no-test-framework
 
-rails generate model Author first_name:string last_name:string date_of_birth:date --no-test-framework
+$ rails generate model Book title:string author:references publication_date:integer genre:string --no-test-framework
 
-rails generate model Book title:string author:references publication_date:integer genre:string --no-test-framework
+$ rake db:migrate
 
-rake db:migrate
+$ rake db:seed
 
-rake db:seed
+or rails db:create db:migrate db:seed
 
-rails db:create db:migrate db:seed
+$ rails g graphql:object user
 
-rails g graphql:object user
+$ rails g graphql:object item
 
-rails g graphql:object item
+```
 
 # Examples project
 
@@ -59,15 +45,18 @@ rails g graphql:object item
 
 [link - rspec](https://semaphoreci.com/community/tutorials/getting-started-with-rspec)
 
-[link](https://evilmartians.com/chronicles/graphql-on-rails-3-on-the-way-to-perfection)
+[link- GraphQL on Rails](https://evilmartians.com/chronicles/graphql-on-rails-3-on-the-way-to-perfection)
 
-[link](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-ruby-on-rails-graphql-api)
+[link - Ruby on Rails GraphQL API](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-ruby-on-rails-graphql-api)
 
 # Example
 
 - http://localhost:3000/graphiql
 
 ```json
+
+/* query examples */
+
 {
   authors {
     id
@@ -87,6 +76,8 @@ rails g graphql:object item
 ```
 
 ```json
+
+/* mutation  examples */
 
 mutation {
     createBook(
