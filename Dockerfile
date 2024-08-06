@@ -7,13 +7,13 @@ COPY Gemfile* /myapp/
 RUN apt -qq update && apt install -y build-essential
 
 
-ARG INSTALL_PYTHON=false
+# ARG INSTALL_PYTHON=false
 
-RUN if [ ${INSTALL_PYTHON} = true ]; then \
-  apt-get -y install python python2.7 python-pip python-dev \
-  && python -m pip install --upgrade pip  \
-  && python -m pip install --upgrade virtualenv \
-;fi
+# RUN if [ ${INSTALL_PYTHON} = true ]; then \
+#  apt-get -y install python python2.7 python-pip python-dev \
+#  && python -m pip install --upgrade pip  \
+#  && python -m pip install --upgrade virtualenv \
+#;fi
 
 
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
@@ -23,10 +23,6 @@ RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
   apt-get install -y vim nodejs sqlite3 libsqlite3-dev yarn && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-
-
-
 
 
 RUN gem update --system && \

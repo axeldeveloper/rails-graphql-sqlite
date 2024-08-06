@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Remover o arquivo de PID do servidor Rails se ele existir
+rm -f tmp/pids/server.pid
+
+# Rodar migrações do banco de dados
+bundle exec rake db:migrate
+
+# Pré-compilar ativos (se necessário)
+bundle exec rake assets:precompile
+
+# Executar o servidor Rails
+bundle exec rails s -b '0.0.0.0'

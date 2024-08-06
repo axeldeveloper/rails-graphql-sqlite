@@ -8,8 +8,21 @@ module.exports = {
   },
   devServer: {
     static: path.join(__dirname, 'public/packs'),
+    contentBase: path.join(__dirname, 'public/packs'),
+    compress: true,
+    port: 3000,
     hot: true,
+    historyApiFallback: true,
+    // Outras opções...
   },
+
+  node: {
+    __dirname: false,
+    __filename: false,
+    global: false,
+  },
+
+
   module: {
     rules: [
       {
@@ -20,12 +33,5 @@ module.exports = {
       // Outras regras...
     ],
   },
-  devServer: {
-    contentBase: path.join(__dirname, 'public/packs'),
-    compress: true,
-    port: 3000,
-    hot: true,
-    historyApiFallback: true,
-    // Outras opções...
-  },
+  
 };

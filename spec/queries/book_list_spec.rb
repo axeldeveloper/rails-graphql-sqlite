@@ -1,0 +1,59 @@
+require 'rails_helper'
+
+RSpec.describe Books::BookList, type: :model do 
+
+  let(:author_attr ) {{ first_name: 'Stephen', last_name: 'King', date_of_birth: Date.parse('1947-09-21')}}
+  
+  let(:author) { Author.create!(author_attr) }
+  
+  let(:valid_attributes) { { title: "Anything", genre: "Horror",  author: author,  publication_date: DateTime.now, author_id: 1 } }
+
+
+  let(:book) { Book.create!(valid_attributes) }
+  
+  describe '.find_all' do
+    it 'returns all books' do
+      book
+      expect(Books::BookList.find_all).to include(book)
+    end
+  end
+
+  describe '.find_limit' do
+    it 'returns a limited number of books' do
+      3.times { Book.create!(valid_attributes) }
+      expect(Books::BookList.find_limit.count).to eq(2)
+    end
+  end
+
+  describe '.find_by_id' do
+    it 'returns the book with the given id' do
+      expect(Books::BookList.find_by_id(book.id)).to eq(book)
+    end
+  end
+
+  describe '.create_book' do
+    it 'creates a new book' do
+      new_book = Books::BookList.create_book(valid_attributes)
+      expect(new_book).to be_persisted
+      expect(new_book.title).to eq('Anything')
+    end
+  end
+
+  describe '.update_book' do
+    it 'updates an existing book' do
+      updated_attributes = { title: 'An Even Greater Book' }
+      Books::BookList.update_book(book.id, updated_attributes)
+      book.reload
+      expect(book.title).to eq('An Even Greater Book')
+    end
+  end
+
+  describe '.destroy_book' do
+    it 'deletes the book' do
+      Books::BookList.destroy_book(book.id)
+      expect(Book.find_by(id: book.id)).to be_nil
+    end
+  end
+
+
+end

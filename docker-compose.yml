@@ -16,9 +16,7 @@ services:
     environment:
       - TZ=America/Sao_Paulo
     volumes:
-      - ./:/myapp
-      #- bundle:/usr/local/bundle
-      #- ./node_modules:/app/node_modules
+      - .:/myapp
     tmpfs: /app/tmp
     depends_on:
       - db
@@ -27,3 +25,24 @@ services:
     stdin_open: true
     ports:
       - "3000:3000"
+
+  # webserver:
+  #   tty: true
+  #   stdin_open: true
+  #   build: .
+  #   command: ./run
+  #   ports:
+  #     - "3001:3000"
+  #   links:
+  #     - webpack
+  #   environment:
+  #     - RAILS_ENV=development
+
+  # webpack:
+  #   build: .
+  #   command: bin/webpack-dev-server
+  #   ports:
+  #     - "8080:8080"
+  #     - "35729:35729"
+  #   environment:
+  #     - NODE_ENV=development

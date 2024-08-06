@@ -22,5 +22,10 @@ else
   echo "Nenhuma migração pendente."
 fi
 
+#if [ "${*}" == "./bin/rails server" ]; then
+#  ./bin/rails db:prepare
+#fi
+
+
 # RUN MAIN PROCESS
 exec "$@"   

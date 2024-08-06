@@ -1,5 +1,7 @@
 # Rails and Graphql
 
+![image](/screem/logo.png)
+
 # Peoject 
  - rails 
  - sqlite
@@ -7,7 +9,7 @@
 
 - ...
 
-# create project local
+# Create project local
 ```sh
 $ gem install bundler
 
@@ -38,6 +40,68 @@ $ rails g graphql:object user
 $ rails g graphql:object item
 
 ```
+
+# Run Docker
+```sh
+
+# build
+$ docker compose build
+
+# run project 
+$ docker compose up
+
+$ docker compose run --rm app bin/rails db:setup
+
+$ docker compose run --rm app rails db:migrate RAILS_ENV=development
+
+$ docker compose run --rm app rails generate rspec:install
+
+$ docker compose run --rm app rails generate rspec:model book
+
+bundle exec rspec spec --tag ~slow_test  #skip slow tests
+bundle exec rspec spec --tag slow_test   #run just slow tests
+
+```
+
+# Custom command rake
+```sh
+
+```
+
+
+# Default: Run all spec files (i.e., those matching spec/**/*_spec.rb)
+```sh
+$ bundle exec rspec
+
+# or 
+
+$ docker compose run --rm app bundle exec rspec
+
+$ docker compose run --rm app bundle exec rspec spec/models/book_spec.rb
+
+$ docker compose run --rm app bundle exec rspec spec/models/author_spec.rb
+
+$ docker compose run --rm app bundle exec rspec spec/queries/bool_list_spec.rb
+```
+
+
+# Run all spec files in a single directory (recursively)
+```sh
+$ bundle exec rspec spec/models
+
+$ docker compose run --rm app bundle exec rspec spec/models
+```
+
+
+# Run a single spec file
+$ bundle exec rspec spec/controllers/accounts_controller_spec.rb
+
+# Run a single example from a spec file (by line number)
+$ bundle exec rspec spec/controllers/accounts_controller_spec.rb:8
+
+# See all options for running specs
+$ bundle exec rspec --help
+
 
 # Examples project
 
@@ -122,6 +186,8 @@ mutation {
 ## My web site
 
 - [my homepage](https://axe-dev.herokuapp.com/)
+
+![image](/screem/rails_ok.png)
 
 ## Contributing
 
