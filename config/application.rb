@@ -10,8 +10,11 @@ module GraphqlTest
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
+    config.api_only = true
 
     config.active_record.schema_format = :ruby
+    config.active_job.queue_adapter = :sidekiq
+    # config.debug_exception_response_format = :api
 
     config.autoload_paths += %W(#{config.root}/app/queries)
     # config.eager_load_paths << "#{Rails.root}/app/queries"

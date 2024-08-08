@@ -27,6 +27,7 @@ class Book < ApplicationRecord
   def self.premium_user_ids
     Rails.cache.fetch 'app_premium_user_ids', expires_in: 1.minutes do
       # microservice call
+      # Simulação de uma consulta cara ao banco de dados
       
     end
   end

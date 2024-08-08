@@ -2,17 +2,32 @@
 services:
   db:
     image: nouchka/sqlite3:latest
+    container_name: ror_db
     volumes:
       #- db:/root/db
       - ./db/:/root/db/
     stdin_open: true
     tty: true
+  
+  redis:
+    # image: redis/redis-stack-server:7.2.0-v6
+    image: redis/redis-stack:latest
+    container_name: ror_redis
+    ports:
+      - 6379:6379
+      - 8001:8001
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+    volumes:
+      - redis_data:/data
+    env_file: .env
 
   app:
     build:
       context: .
       dockerfile: ./Dockerfile
     # command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
+    container_name: ror_app
     environment:
       - TZ=America/Sao_Paulo
     volumes:
@@ -20,6 +35,7 @@ services:
     tmpfs: /app/tmp
     depends_on:
       - db
+      - redis
     env_file: .env
     tty: true
     stdin_open: true
@@ -46,3 +62,7 @@ services:
   #     - "35729:35729"
   #   environment:
   #     - NODE_ENV=development
+
+
+volumes:
+  redis_data:

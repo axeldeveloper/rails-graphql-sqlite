@@ -47,6 +47,8 @@ gem 'graphql'
 gem 'faker'
 
 gem 'sidekiq', '~> 7.3'
+#gem 'sidekiq'
+gem 'sidekiq-cron'
 
 # gem 'graphiql-rails', group: :development
 

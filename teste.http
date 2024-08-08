@@ -1,5 +1,5 @@
 ###
-GET http://localhost:3000/books HTTP/1.1
+GET http://localhost:3000/api/v1/books HTTP/1.1
 content-type: application/json
 
 
@@ -13,6 +13,13 @@ content-type: application/json
         "title": "Mnango2",
         "author_id": 1,
         "publication_date": "2021-01-31",
-        "genre": "Terror"
+        "genre": "Horror"
     }
 }
+
+
+
+
+###
+GET http://localhost:3000/api/v1/authors HTTP/1.1
+content-type: application/json

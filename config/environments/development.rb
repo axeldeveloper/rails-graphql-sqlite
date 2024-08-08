@@ -56,6 +56,11 @@ Rails.application.configure do
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
 
+  config.debug_exception_response_format = :api
+  # config.debug_exception_response_format = :default
+
+
+
   # config.load_paths << "#{RAILS_ROOT}/app/queries"
 
   # Use an evented file watcher to asynchronously detect changes in source code,

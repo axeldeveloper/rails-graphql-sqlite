@@ -41,7 +41,7 @@ $ rails g graphql:object item
 
 ```
 
-# Run Docker
+# Run Docker commands
 ```sh
 
 # build
@@ -50,32 +50,51 @@ $ docker compose build
 # run project 
 $ docker compose up
 
+# setud db an migrations
 $ docker compose run --rm app bin/rails db:setup
 
+# using and check middleware
+$ docker compose run --rm app bin/rails middleware
+
+# migrate
 $ docker compose run --rm app rails db:migrate RAILS_ENV=development
 
-$ docker compose run --rm app rails generate rspec:install
+```
 
-$ docker compose run --rm app rails generate rspec:model book
+
+
+# Test run in docker
+```sh
+$ docker compose run --rm app rails generate rspec:install
 
 bundle exec rspec spec --tag ~slow_test  #skip slow tests
 bundle exec rspec spec --tag slow_test   #run just slow tests
 
+
+# run test in model
+$ docker compose run --rm app rails generate rspec:model book
+
+$ docker compose run --rm app bundle exec rspec spec/models/author_spec.rb
 ```
 
-# Custom command rake
+# rails generator
 ```sh
 
+$ docker compose run --rm app rails generate controller Api::V1::Author
 ```
 
 
 # Default: Run all spec files (i.e., those matching spec/**/*_spec.rb)
 ```sh
 $ bundle exec rspec
+$ bundle exec rspec spec/models
 
 # or 
 
 $ docker compose run --rm app bundle exec rspec
+
+
+$ docker compose run --rm app bundle exec rspec spec/models
 
 $ docker compose run --rm app bundle exec rspec spec/models/book_spec.rb
 
@@ -85,12 +104,21 @@ $ docker compose run --rm app bundle exec rspec spec/queries/bool_list_spec.rb
 ```
 
 
-# Run all spec files in a single directory (recursively)
-```sh
-$ bundle exec rspec spec/models
 
-$ docker compose run --rm app bundle exec rspec spec/models
+# Run 
+```sh
+
 ```
+
+# Custom Rake
+```sh
+$ docker compose run --rm app bundle exec rake db:seed:single SEED=author_seed
+
+$ docker compose run --rm app bundle exec rake report:generate
+
+```
+
+
 
 
 # Run a single spec file
