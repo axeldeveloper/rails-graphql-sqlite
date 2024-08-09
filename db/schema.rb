@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_12_012752) do
+ActiveRecord::Schema.define(version: 2024_08_09_024225) do
+
+  create_table "audits", force: :cascade do |t|
+    t.string "notification"
+    t.text "jsonb"
+    t.string "auditable_type", null: false
+    t.integer "auditable_id", null: false
+    t.index ["auditable_type", "auditable_id"], name: "index_audits_on_auditable_type_and_auditable_id"
+  end
 
   create_table "authors", force: :cascade do |t|
     t.string "first_name"

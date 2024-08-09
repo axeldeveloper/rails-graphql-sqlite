@@ -29,6 +29,9 @@ $ rails generate model Author first_name:string last_name:string date_of_birth:d
 
 $ rails generate model Book title:string author:references publication_date:integer genre:string --no-test-framework
 
+
+
+
 $ rake db:migrate
 
 $ rake db:seed
@@ -58,6 +61,9 @@ $ docker compose run --rm app bin/rails middleware
 
 # migrate
 $ docker compose run --rm app rails db:migrate RAILS_ENV=development
+
+$ docker compose run --rm app rails generate migration CreateAudits notification:string auditable:references{polymorphic}
+
 
 ```
 
@@ -105,8 +111,9 @@ $ docker compose run --rm app bundle exec rspec spec/queries/bool_list_spec.rb
 
 
 
-# Run 
+# Run Sidekiq
 ```sh
+bundle exec sidekiq -C config/sidekiq.yml
 
 ```
 

@@ -59,9 +59,10 @@ Rails.application.configure do
   config.debug_exception_response_format = :api
   # config.debug_exception_response_format = :default
 
-
-
   # config.load_paths << "#{RAILS_ROOT}/app/queries"
+
+  config.cache_store = :redis_cache_store, { url: ENV['SIDEKIQ_REDIS_URL'] }
+
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.

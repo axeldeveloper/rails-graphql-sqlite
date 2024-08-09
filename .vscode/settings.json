@@ -1,4 +1,7 @@
 {
+    "editor.detectIndentation": true,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
     "sqltools.connections": [
         {
             "previewLimit": 50,

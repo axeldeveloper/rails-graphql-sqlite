@@ -7,13 +7,23 @@ redis_config = { url: ENV['SIDEKIQ_REDIS_URL'] }
 Sidekiq.configure_server do |config|
     config.redis = redis_config
     config.average_scheduled_poll_interval = 1
-
-    #config.periodic do |mgr|
-    #    puts "worker pedioc"
-        # mgr.register('* 2 * * *', 'GenerateRandomUserJob') # 2am daily
-    #    mgr.register('1 * * * *', 'GenerateRandomUserJob') # 2am daily
-    #end
-
+    
+    config.on(:startup) do
+      # Carregar a configuração do sidekiq.yml
+      sidekiq_yml = YAML.load_file(Rails.root.join('config', 'sidekiq.yml'))
+  
+      # Criar os cron jobs a partir da configuração
+      # if sidekiq_yml['cron_jobs']
+      #   sidekiq_yml['cron_jobs'].each do |job|
+      #     Sidekiq::Cron::Job.create(
+      #       name: job['name'],
+      #       cron: job['cron'],
+      #       class: job['class']
+      #     )
+      #   end
+      # end
+    end
+   
 
     #schedule_file = "config/schedule.yml"
     #if File.exists?(schedule_file)

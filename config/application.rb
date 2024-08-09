@@ -19,6 +19,13 @@ module GraphqlTest
     config.autoload_paths += %W(#{config.root}/app/queries)
     # config.eager_load_paths << "#{Rails.root}/app/queries"
 
+    # This also configures session_options for use below
+    config.session_store :cookie_store, key: '_app_ror_lite_session'
+    # Required for all session management (regardless of session_store)
+    config.middleware.use ActionDispatch::Cookies
+
+    config.middleware.use config.session_store, config.session_options
+
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)

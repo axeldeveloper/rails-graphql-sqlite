@@ -10,10 +10,18 @@ Rails.application.routes.draw do
   end
   post "/graphql", to: "graphql#execute"
 
-
+  #match 'path', :to => 'controller#action', :via => [:get, :post]
+  
   namespace :api do 
     namespace :v1 do 
-      resources :books    # , only: [:index, :create]
+      resources :books do
+        collection do
+          match '/genre/:genre(/:status)', to: 'books#categories', as: 'filter', :via => [:get]
+          # match '/:status', to: 'posts#index', as: 'filter'
+        end
+      end
+      
+      # resources :books    # , only: [:index, :create]
       resources :authors  #, only: [:index, :create]
     end
   end

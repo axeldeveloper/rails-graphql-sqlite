@@ -1,3 +1,15 @@
 :concurrency: 5
 :queues:
   - default
+  - mailers
+:timeout: 30
+:logfile: 'log/sidekiq.log'
+:pidfile: 'tmp/pids/sidekiq.pid'
+:environment: 'development'
+# :cron_jobs:
+#   - name: 'Daily job - every day at 12am'
+#     cron: '0 0 * * *'
+#     class: 'DailyJob'
+#   - name: 'Weekly job - every Monday at 3am'
+#     cron: '0 3 * * 1'
+#     class: 'WeeklyJob'

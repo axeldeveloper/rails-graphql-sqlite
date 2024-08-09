@@ -5,12 +5,13 @@ class Book < ApplicationRecord
   enum genre: ALL_GENRES.zip(ALL_GENRES).to_h
 
   validates_presence_of :title
-  # validates_presence_of :author_id
   validates_presence_of :publication_date
   validates_presence_of :genre
  
   
   belongs_to :author , optional: true
+
+  has_many :audits, as: :auditable
 
   default_scope { order(id: :desc) }
 

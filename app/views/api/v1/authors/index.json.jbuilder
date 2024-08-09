@@ -7,6 +7,8 @@ json.array! @authors do |a|
     json.created_at a.created_at
 
     json.books a.books do |book|
-        json.partial! 'api/v1/books/book', book: book
+        json.partial! 'api/v1/books/summary', book: book
     end
+
+    #json.array! a.books, partial: 'api/v1/books/summary', as: :book
 end
