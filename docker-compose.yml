@@ -42,6 +42,14 @@ services:
     ports:
       - "3000:3000"
 
+  
+  rubocop:
+    build: .
+    command: bundle exec rubocop --autocorrect
+    volumes:
+      - .:/myapp
+
+  
   # webserver:
   #   tty: true
   #   stdin_open: true

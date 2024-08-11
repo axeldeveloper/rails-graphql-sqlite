@@ -1,34 +1,30 @@
-require "rails_helper"
+# frozen_string_literal:
 
-RSpec.describe Book, :type => :model do
+require 'rails_helper'
 
-  subject { 
-    described_class.new(title: "Anything",
-    genre: "Horror",
-    publication_date: DateTime.now,
-    author_id: 1)
-  }
+RSpec.describe Book, type: :model do
+  subject do
+    described_class.new(title: 'Anything',
+                        genre: 'Horror',
+                        publication_date: DateTime.now,
+                        author_id: 1)
+  end
 
-  #it "is valid with valid attributes" do
-  #  expect(Book.new).to be_valid
-  #end
-
-  it "is valid with valid attributes" do
+  it 'is valid with valid attributes' do
     expect(subject).to be_valid
   end
-  
-  it "is not valid without a title" do
+
+  it 'is not valid without a title' do
     subject.title = nil
     expect(subject).to_not be_valid
   end
 
-  it "is not valid without a genre" do
+  it 'is not valid without a genre' do
     subject.genre = nil
     expect(subject).to_not be_valid
   end
 
- 
-  it "is not valid without a publication_date" do 
+  it 'is not valid without a publication_date' do
     subject.publication_date = nil
     expect(subject).to_not be_valid
   end
@@ -37,9 +33,7 @@ RSpec.describe Book, :type => :model do
     should belong_to(:author)
   end
 
-  describe "Associations" do
+  describe 'Associations' do
     it { should belong_to(:user).without_validating_presence }
   end
-  
-
 end

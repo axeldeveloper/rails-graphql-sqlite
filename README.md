@@ -99,7 +99,6 @@ $ bundle exec rspec spec/models
 
 $ docker compose run --rm app bundle exec rspec
 
-
 $ docker compose run --rm app bundle exec rspec spec/models
 
 $ docker compose run --rm app bundle exec rspec spec/models/book_spec.rb
@@ -111,9 +110,14 @@ $ docker compose run --rm app bundle exec rspec spec/queries/bool_list_spec.rb
 
 
 
-# Run Sidekiq
+# Run rocop in docker
 ```sh
-bundle exec sidekiq -C config/sidekiq.yml
+docker compose run --rm rubocop 
+
+docker-compose run --rm rubocop --auto-correct
+
+docker compose run --rm rubocop bundle exec rubocop --auto-correct
+
 
 ```
 
@@ -220,7 +224,7 @@ mutation {
 
 ## My web site
 
-- [my homepage](https://axe-dev.herokuapp.com/)
+- [my homepage](https://axeldeveloper.github.io/)
 
 ![image](/screem/rails_ok.png)
 

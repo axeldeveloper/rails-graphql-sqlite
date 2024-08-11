@@ -1,4 +1,6 @@
-# app/jobs/weekly_job.rb
+# frozen_string_literal: true
+
+# Job
 class WeeklyJob
   include Sidekiq::Worker
 

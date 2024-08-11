@@ -1,4 +1,6 @@
-# app/workers/audit_worker.rb
+# frozen_string_literal: true
+
+# Job
 class AuditWorker
   include Sidekiq::Worker
 
@@ -11,5 +13,4 @@ class AuditWorker
       Rails.logger.error "Book with ID #{book_data['id']} not found."
     end
   end
-
 end

@@ -1,0 +1,15 @@
+require:
+  - rubocop-rails
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'db/schema.rb'
+    - 'bin/rails'
+    - 'bin/rake'
+
+#Rails:
+#  Enabled: true

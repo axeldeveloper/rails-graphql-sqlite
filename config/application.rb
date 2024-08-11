@@ -16,7 +16,7 @@ module GraphqlTest
     config.active_job.queue_adapter = :sidekiq
     # config.debug_exception_response_format = :api
 
-    config.autoload_paths += %W(#{config.root}/app/queries)
+    config.autoload_paths += %W[#{config.root}/app/queries]
     # config.eager_load_paths << "#{Rails.root}/app/queries"
 
     # This also configures session_options for use below
@@ -29,6 +29,5 @@ module GraphqlTest
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
-    
   end
 end
