@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 # config/initializers/book_event_subscriber.rb
 ActiveSupport::Notifications.subscribe('book.created') do |_name, _start, _finish, _id, payload|
   # Aqui você pode adicionar lógica adicional, como enviar e-mails
-  # job = Sidekiq::Cron::Job.create(name: 'Hard worker - every 1min', cron: '1 * * * *', queue: 'default', class: 'HardWorker' )
   book = payload[:book]
   message = "Book created with ID: => #{book.id}"
   Rails.logger.info message

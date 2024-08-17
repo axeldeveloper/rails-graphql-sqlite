@@ -1,4 +1,5 @@
-# app/queries/Book/author_list.rb
+# frozen_string_literal: true
+
 module Books
   class AuthorList
     def self.find_all
@@ -19,13 +20,13 @@ module Books
 
     def self.update(id, params)
       author = Author.find_by(id: id)
-      author.update(params) if author
+      author&.update(params)
       author
     end
 
     def self.destroy(id)
       author = Author.find_by(id: id)
-      author.destroy if author
+      author&.destroy
       author
     end
   end

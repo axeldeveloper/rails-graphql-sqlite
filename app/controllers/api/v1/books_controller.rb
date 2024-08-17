@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Controller Books for managing authors in the API.
-
+# Api::V1::Booksontroller is responsible for handling requests related to authors.
+# It provides actions to manage and retrieve authors from the API
 module Api
   module V1
     class BooksController < ApplicationController
@@ -17,14 +17,10 @@ module Api
       end
 
       def categories
-        @books = Rails.cache.fetch('books_by_category/Terror', expires_in: 1.hour) do
+        @books = Rails.cache.fetch(cache_key, expires_in: 1.hour) do
           # Simulação de uma consulta cara ao banco de dados
-          q = params[:genre]
-          if params[:status].presents
-            Rails.logger.info q
-            Rails.logger.info params[:status]
-          end
-          ::Books::BookByGenreQuery.new(genre: 'Horror').call.to_a
+          # if params[:status].presents
+          ::Books::BookByGenreQuery.new(genre: params[:genre]).call.to_a
         end
         render 'api/v1/books/index.json.jbuilder', status: :ok
       end
@@ -54,6 +50,10 @@ module Api
       end
 
       private
+
+      def cache_key
+        'books_by_category/Terror'
+      end
 
       def book_params
         params.require(:book).permit(:title, :publication_date, :genre, :author_id)

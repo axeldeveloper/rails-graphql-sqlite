@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Books
   class ServiceBookRegistration < ApplicationService
     def initialize(user_params)
@@ -8,7 +10,9 @@ module Books
       create_book
     end
 
-    private def create_book
+    private
+
+    def create_book
       # book = ::Books::BookListQuery.create(@user_params)
       book = Book.new(@user_params)
       if book.save
@@ -19,7 +23,7 @@ module Books
       end
     end
 
-    private def notify_user_creation(book)
+    def notify_user_creation(book)
       ActiveSupport::Notifications.instrument('book.created', book: book)
     end
   end

@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 namespace :report do
   desc 'Generate a report of users who logged in during the last week'
   task generate: :environment do
     # $ rake report:generate
 
-    one_week_ago = Time.now - 1.week
+    one_week_ago = 1.week.ago
 
     authors = Author.where('date_of_birth <= ?', one_week_ago)
 

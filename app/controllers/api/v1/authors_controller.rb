@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Controller Authors for managing authors in the API.
-
+# Api::V1::AuthorsController is responsible for handling requests related to authors.
+# It provides actions to manage and retrieve authors from the API
 module Api
   module V1
     class AuthorsController < ApplicationController

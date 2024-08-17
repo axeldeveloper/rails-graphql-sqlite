@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # bundle exec rake db:seed:single SEED=posts_seed
 authors = [
   { first_name: 'Stephen', last_name: 'King', date_of_birth: Date.parse('1947-09-21') },

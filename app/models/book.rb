@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Book < ApplicationRecord
   ALL_GENRES = %w[Thriller Horror Mystery Comedy Action Adventure Police Drama Suspension].freeze
 

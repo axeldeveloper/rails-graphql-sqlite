@@ -1,4 +1,5 @@
-# app/queries/Book/book_list.rb
+# frozen_string_literal: true
+
 module Books
   class BookListQuery
     def self.find_all

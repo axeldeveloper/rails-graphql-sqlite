@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 # # spec/controllers/users_controller_spec.rb
 # require 'rails_helper'
 
 # RSpec.describe UsersController, type: :controller do
-#   let(:valid_attributes) { { name: 'John Doe', email: 'john@example.com', password: 'password', sign_in_count: 1, verified: true } }
+#   let(:valid_attributes) { { name: 'John Doe', email: 'john@example.com',
+# password: 'password', sign_in_count: 1, verified: true } }
 #   let(:invalid_attributes) { { name: nil, email: nil } }
 #   let(:user) { User.create!(valid_attributes) }
 

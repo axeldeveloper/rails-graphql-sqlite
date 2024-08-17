@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 module Mutations
   module Books
+    # classe responsavel por cria uma book
     class CreateBook < ::Mutations::BaseMutation
       argument :title, String, required: true
       argument :author_id, Integer, required: true

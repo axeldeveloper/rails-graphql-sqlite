@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.extract! book, :id, :title, :author_id, :genre, :publication_date
 json.author do
   json.name book.author.first_name

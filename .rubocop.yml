@@ -8,8 +8,11 @@ AllCops:
   NewCops: enable
   Exclude:
     - 'db/schema.rb'
-    - 'bin/rails'
-    - 'bin/rake'
+    #- 'bin/bundle'
+    #- 'bin/rails'
+    #- 'bin/rake'
+    - 'db/migrate/**/*'
+    - 'bin/**/*'
 
 #Rails:
 #  Enabled: true

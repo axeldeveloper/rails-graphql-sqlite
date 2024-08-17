@@ -4,6 +4,8 @@ class CreateAudits < ActiveRecord::Migration[6.0]
       t.string :notification
       t.text :jsonb
       t.references :auditable, polymorphic: true, null: false
+
+      t.timestamps
     end
   end
 end

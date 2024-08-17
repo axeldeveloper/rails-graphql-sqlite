@@ -1,3 +1,10 @@
+# frozen_string_literal: true
+
+# Exemplo de uso:
+#
+#   service = ServiceBookUpdate.new(book, params)
+#   service.call
+#
 module Books
   class ServiceBookList < ApplicationService
     def call

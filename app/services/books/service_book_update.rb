@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Books
   class ServiceBookUpdate < ApplicationService
     def initialize(id:, params:)
@@ -9,7 +11,9 @@ module Books
       update_book
     end
 
-    private def update_book
+    private
+
+    def update_book
       book = ::Books::BookListQuery.find_by_id(@id)
       if book.update(@params)
         notify_user_creation(book)
@@ -19,7 +23,7 @@ module Books
       end
     end
 
-    private def notify_user_creation(book)
+    def notify_user_creation(book)
       ActiveSupport::Notifications.instrument('book.update', book: book)
     end
   end

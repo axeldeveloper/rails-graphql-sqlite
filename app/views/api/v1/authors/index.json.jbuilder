@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.array! @authors do |a|
   # next if comment.marked_as_spam_by?(current_user)
   json.id a.id
