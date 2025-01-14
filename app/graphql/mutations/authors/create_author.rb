@@ -23,8 +23,6 @@ module Mutations
           { author: nil, errors: author.errors.full_messages }
         end
       end
-
-
     end
   end
 end

@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -14,7 +17,7 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp', 'caching-dev.txt').exist?
+  if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
@@ -56,7 +59,18 @@ Rails.application.configure do
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
 
+  config.debug_exception_response_format = :api
+  # config.debug_exception_response_format = :default
+
+  # config.load_paths << "#{RAILS_ROOT}/app/queries"
+
+  config.cache_store = :redis_cache_store, { url: ENV.fetch('SIDEKIQ_REDIS_URL', nil) }
+
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
-  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+ 
+
+
+
+
 end

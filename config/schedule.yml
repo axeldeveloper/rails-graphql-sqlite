@@ -1,0 +1,19 @@
+# config/schedule.yml
+daily_job:
+  cron: "0 0 * * *"       # Todos os dias à meia-noite
+  class: "DailyJob"
+  queue: "default"
+  description: "Executes daily job"
+
+weekly_job:
+  cron: "0 3 * * 1"       # Toda segunda-feira às 3 da manhã
+  class: "WeeklyJob"
+  queue: "default"
+  description: "Executes weekly job"
+
+user_random_update:
+  name: 'Update user - every 1min'   
+  cron: "* * * * *"
+  class: "UserRandomUpdateJob"
+  queue: default
+  description: "Update user - every 1min"

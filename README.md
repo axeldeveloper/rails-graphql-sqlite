@@ -1,42 +1,146 @@
 # Rails and Graphql
-# Project 
-- rails
-- sqlite 
-- graphql
+
+![image](/screem/logo.png)
+
+# Peoject 
+ - rails 
+ - sqlite
+ - graphql
 
 - ...
 
-# Step 1 - install dependencies
+# Create project local
+```sh
+$ gem install bundler
 
-gem install bundler
+$ bundle install rails
 
-npm install --global yarn
+$ rails new graphql_test --database=postgresql
 
-bundle install
+$ rake db:create
 
-rails new graphql_test --database=postgresql
+$ add gem 'graphql'
 
-rake db:create
+$ bundle install
 
-add gem 'graphql'
+$ rails generate graphql:install
 
-bundle install
+$ rails generate model Author first_name:string last_name:string date_of_birth:date --no-test-framework
 
-rails generate graphql:install
+$ rails generate model Book title:string author:references publication_date:integer genre:string --no-test-framework
 
-rails generate model Author first_name:string last_name:string date_of_birth:date --no-test-framework
 
-rails generate model Book title:string author:references publication_date:integer genre:string --no-test-framework
 
-rake db:migrate
 
-rake db:seed
+$ rake db:migrate
 
-rails db:create db:migrate db:seed
+$ rake db:seed
 
-rails g graphql:object user
+or rails db:create db:migrate db:seed
 
-rails g graphql:object item
+$ rails g graphql:object user
+
+$ rails g graphql:object item
+
+```
+
+# Run Docker commands
+```sh
+
+# build
+$ docker compose build
+
+# run project 
+$ docker compose up
+
+# setud db an migrations
+$ docker compose run --rm app bin/rails db:setup
+
+# using and check middleware
+$ docker compose run --rm app bin/rails middleware
+
+# migrate
+$ docker compose run --rm app rails db:migrate RAILS_ENV=development
+
+$ docker compose run --rm app rails generate migration CreateAudits notification:string auditable:references{polymorphic}
+
+
+```
+
+
+
+# Test run in docker
+```sh
+$ docker compose run --rm app rails generate rspec:install
+
+bundle exec rspec spec --tag ~slow_test  #skip slow tests
+bundle exec rspec spec --tag slow_test   #run just slow tests
+
+
+# run test in model
+$ docker compose run --rm app rails generate rspec:model book
+
+$ docker compose run --rm app bundle exec rspec spec/models/author_spec.rb
+```
+
+# rails generator
+```sh
+
+$ docker compose run --rm app rails generate controller Api::V1::Author
+```
+
+
+# Default: Run all spec files (i.e., those matching spec/**/*_spec.rb)
+```sh
+$ bundle exec rspec
+$ bundle exec rspec spec/models
+
+# or 
+
+$ docker compose run --rm app bundle exec rspec
+
+$ docker compose run --rm app bundle exec rspec spec/models
+
+$ docker compose run --rm app bundle exec rspec spec/models/book_spec.rb
+
+$ docker compose run --rm app bundle exec rspec spec/models/author_spec.rb
+
+$ docker compose run --rm app bundle exec rspec spec/queries/bool_list_spec.rb
+```
+
+
+
+# Run rocop in docker
+```sh
+docker compose run --rm rubocop 
+
+docker-compose run --rm rubocop --auto-correct
+
+docker compose run --rm rubocop bundle exec rubocop --auto-correct
+
+
+```
+
+# Custom Rake
+```sh
+$ docker compose run --rm app bundle exec rake db:seed:single SEED=author_seed
+
+$ docker compose run --rm app bundle exec rake report:generate
+
+```
+
+
+
+
+# Run a single spec file
+$ bundle exec rspec spec/controllers/accounts_controller_spec.rb
+
+# Run a single example from a spec file (by line number)
+$ bundle exec rspec spec/controllers/accounts_controller_spec.rb:8
+
+# See all options for running specs
+$ bundle exec rspec --help
+
 
 # Examples project
 
@@ -44,15 +148,18 @@ rails g graphql:object item
 
 [link - rspec](https://semaphoreci.com/community/tutorials/getting-started-with-rspec)
 
-[link](https://evilmartians.com/chronicles/graphql-on-rails-3-on-the-way-to-perfection)
+[link- GraphQL on Rails](https://evilmartians.com/chronicles/graphql-on-rails-3-on-the-way-to-perfection)
 
-[link](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-ruby-on-rails-graphql-api)
+[link - Ruby on Rails GraphQL API](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-ruby-on-rails-graphql-api)
 
 # Example
 
 - http://localhost:3000/graphiql
 
 ```json
+
+/* query examples */
+
 {
   authors {
     id
@@ -72,6 +179,8 @@ rails g graphql:object item
 ```
 
 ```json
+
+/* mutation  examples */
 
 mutation {
     createBook(
@@ -115,7 +224,9 @@ mutation {
 
 ## My web site
 
-- [my homepage](https://axe-dev.herokuapp.com/)
+- [my homepage](https://axeldeveloper.github.io/)
+
+![image](/screem/rails_ok.png)
 
 ## Contributing
 
