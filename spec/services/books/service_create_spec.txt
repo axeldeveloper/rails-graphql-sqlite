@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Services::BookList, type: :model do
+RSpec.describe Services::Books::ServiceBookCreate, type: :model do
   context 'when setting up the list' do
     before do
       # Configuração necessária para os testes

@@ -4,10 +4,9 @@
 # It provides actions to manage and retrieve authors from the API
 module Api
   module V1
-    class BooksController < ApplicationController
-      
+    class BooksController < Api::ApplicationApiController
       before_action :set_book_params, only: %i[show destroy]
-      
+
       def index
         @books = Books::ServiceBookList.call
         render 'api/v1/books/index', status: :ok
@@ -15,13 +14,11 @@ module Api
         render json: { error: e.message }, status: :internal_server_error
       end
 
-
       def show
         render 'api/v1/books/show', status: :ok
       end
 
       def categories
-
         # Define a chave do cache com base nos parâmetros da requisição
         cache_key = "categories/#{params[:genre]}"
         # cache_key = 'books_by_category/Terror'
@@ -29,10 +26,10 @@ module Api
         # Verifica se o cache deve ser renovado
         renew_cache = params[:renew_cache].present?
 
-        #tim = 1.hour
+        # tim = 1.hour
         tim = 1.minute
 
-        @books = Rails.cache.fetch(cache_key, expires_in: tim , force: renew_cache) do
+        @books = Rails.cache.fetch(cache_key, expires_in: tim, force: renew_cache) do
           # Simulação de uma consulta cara ao banco de dados
           # if params[:status].presents
           ::Books::BookByGenreQuery.new(genre: params[:genre]).call.to_a
@@ -49,7 +46,7 @@ module Api
         if @book.is_a?(Book)
           render 'api/v1/books/show', status: :created
         else
-          render json: { error: 'Validation failed', message: @book }, status: :not_found
+          render_details('Validation failed', @book)
         end
       end
 
@@ -58,8 +55,10 @@ module Api
         if @book.is_a?(Book)
           render 'api/v1/books/show', status: :ok
         else
-          render json: { error: 'Validation failed', message: @book }, status: :not_found
+          render_details('Validation failed', @book)
         end
+      rescue ActiveRecord::RecordNotFound => e
+        render json: { success: false, error: e.message }, status: :not_found
       end
 
       def destroy
@@ -70,18 +69,16 @@ module Api
 
       private
 
-      #def cache_key
+      # def cache_key
       #  'books_by_category/Terror'
-      #end
+      # end
 
       def book_params
         params.require(:book).permit(:title, :publication_date, :genre, :author_id)
       end
 
       def set_book_params
-        Rails.logger.info("Fetching book with ID: #{params[:id]}")
         @book = ::Books::ServiceBookOne.new(params[:id]).call
-        #@book = Book.find(params[:id])
       end
     end
   end

@@ -5,4 +5,6 @@ Shoulda::Matchers.configure do |config|
     with.test_framework :rspec
     with.library :rails
   end
+
+  # config.include Request::JsonHelpers, type: :request
 end

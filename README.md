@@ -133,10 +133,17 @@ $ docker compose run --rm app bundle exec rake report:generate
 
 
 # Run a single spec file
+
+sudo bundle exec rspec spec/controllers/api/v1/books_controller_spec.rb
+sudo bundle exec rspec spec/controllers/api/v1/books_controller_spec.rb:62 
+sudo bundle exec rspec spec/controllers/api/v1/authos_controller_spec.rb:62 
+
 $ bundle exec rspec spec/controllers/accounts_controller_spec.rb
 
 # Run a single example from a spec file (by line number)
 $ bundle exec rspec spec/controllers/accounts_controller_spec.rb:8
+
+sudo bundle exec rspec spec/controllers/api/v1/books_controller_spec.rb
 
 # See all options for running specs
 $ bundle exec rspec --help

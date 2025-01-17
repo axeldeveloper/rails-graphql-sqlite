@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class Author < ApplicationRecord
+  validates :first_name, presence: true
+  # validates :last_name, presence: true
+  validates :date_of_birth, presence: true
+
   has_many :books
 
   has_many :audits, as: :auditable

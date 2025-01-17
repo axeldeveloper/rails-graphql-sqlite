@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module Books
+  # Service object responsible for updating books in the system
   class ServiceBookUpdate < ApplicationService
-    
     def initialize(id:, params:)
+      super()
       @id = id
-      #@params = params
       @book_param = params
     end
 
@@ -16,18 +16,19 @@ module Books
     private
 
     def update_book
-      result =  BooksRepository.update(@id, @book_param)
+      result = BooksRepository.update(@id, @book_param)
       if result[:success]
-        notify_user_creation( result[:book] )
-        result[:book] 
+        notify_user_creation(result[:book])
+        result[:book]
       else
+        Rails.logger.warn result[:errors]
         result[:errors]
       end
     end
 
-
     def notify_user_creation(book)
-      ActiveSupport::Notifications.instrument('book.update', book: book)
+      Rails.logger.warn 'ActiveSupport::Notifications está disponível nesta versão do Rails'
+      # ActiveSupport::Notifications.instrument('book.update', book: book)
     end
   end
 end

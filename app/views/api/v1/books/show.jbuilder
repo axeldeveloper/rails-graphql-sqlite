@@ -7,4 +7,3 @@ json.publication_date @book.publication_date
 json.author do
   json.name @book.author.first_name
 end
-

@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::API
-
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
   rescue_from ActiveRecord::NotNullViolation, with: :handle_not_null_violation
-  
-  # rescue_from StandardError, with: :internal_server_error
 
+  # rescue_from StandardError, with: :internal_server_error
 
   private
 
@@ -16,7 +14,8 @@ class ApplicationController < ActionController::API
   end
 
   def record_invalid(exception)
-    render json: { error: 'Validation failed', message: exception.record.errors.full_messages }, status: :unprocessable_entity
+    render json: { error: 'Validation failed', message: exception.record.errors.full_messages },
+           status: :unprocessable_entity
   end
 
   def internal_server_error(exception)
@@ -29,6 +28,4 @@ class ApplicationController < ActionController::API
       message: exception.message
     }, status: :unprocessable_entity
   end
-  
-
 end

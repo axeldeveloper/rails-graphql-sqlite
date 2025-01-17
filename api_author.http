@@ -1,0 +1,52 @@
+
+###
+GET http://localhost:3000/api/v1/authors HTTP/1.1
+content-type: application/json
+
+
+###
+GET http://localhost:3000/api/v1/authors/11 HTTP/1.1
+content-type: application/json
+
+
+###
+POST http://localhost:3000/api/v1/authors HTTP/1.1
+content-type: application/json
+
+{ 
+    "author": {
+        "first_name": "Pedro",
+        "last_name": "Mesquita",
+        "date_of_birth": "1990-01-31"
+    }
+}
+
+# validar se o campo last_name é obrigatório
+
+###
+POST http://localhost:3000/api/v1/authors HTTP/1.1
+content-type: application/json
+
+{ 
+    "author": {
+        "last_name": "Mesquita",
+        "date_of_birth": "1990-01-31"
+    }
+}
+
+
+###
+PUT http://localhost:3000/api/v1/authors/6 HTTP/1.1
+content-type: application/json
+
+{ 
+    "author": {
+        "first_name": "Peitro",
+        "last_name": "Russo",
+        "date_of_birth": "1994-01-31"
+    }
+}
+
+###
+DELETE http://localhost:3000/api/v1/authors/7 HTTP/1.1
+content-type: application/json

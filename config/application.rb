@@ -16,14 +16,13 @@ module GraphqlTest
 
     config.active_record.schema_format = :ruby
     config.active_job.queue_adapter = :sidekiq
-    
 
     # config.debug_exception_response_format = :api
 
     # config.autoload_paths += %W[#{config.root}/app/queries]
-    
-    
+
     # config.eager_load_paths << "#{Rails.root}/app/queries"
+    # config.autoload_paths += %W[#{config.root}/app/repositories]
 
     # This also configures session_options for use below
     config.session_store :cookie_store, key: '_app_ror_lite_session'
