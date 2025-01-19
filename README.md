@@ -73,10 +73,7 @@ $ docker compose run --rm app rails generate migration CreateAudits notification
 ```sh
 $ docker compose run --rm app rails generate rspec:install
 
-bundle exec rspec spec --tag ~slow_test  #skip slow tests
-bundle exec rspec spec --tag slow_test   #run just slow tests
-
-
+$ bundle exec rspec spec --tag slow_test  #skip slow tests
 # run test in model
 $ docker compose run --rm app rails generate rspec:model book
 
@@ -164,6 +161,19 @@ $ bundle exec rspec --help
 - http://localhost:3000/graphiql
 
 ```json
+
+/* query examples */
+
+query{
+  authors {
+    id,
+    firstName,
+    books {
+      id
+    }
+  }
+}
+
 
 /* query examples */
 

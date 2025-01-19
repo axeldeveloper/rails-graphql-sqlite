@@ -11,7 +11,7 @@ RSpec.describe Book, type: :model do
   end
 
   it 'Belongs to a author' do
-    # should belong_to(:author)
+    should belong_to(:author).without_validating_presence
   end
 
   it 'Associations' do
