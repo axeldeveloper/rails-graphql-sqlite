@@ -17,6 +17,10 @@ console_command = '/rails/bin/rails console'
   min_machines_running = 0
   processes = ['app']
 
+[env]
+  RAILS_ENV = 'producion'
+  NODE_ENV = 'producion'
+
 [[vm]]
   memory = '1gb'
   cpu_kind = 'shared'
