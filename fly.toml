@@ -18,8 +18,8 @@ console_command = '/rails/bin/rails console'
   processes = ['app']
 
 [env]
-  RAILS_ENV = 'producion'
-  NODE_ENV = 'producion'
+  RAILS_ENV = 'production'
+  NODE_ENV = 'production'
 
 [[vm]]
   memory = '1gb'
