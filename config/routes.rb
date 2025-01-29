@@ -6,7 +6,14 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
   mount GraphiQL::Rails::Engine, at: '/graphiql', graphql_path: '/graphql' if Rails.env.development?
+
+  #if Rails.env.production?
+  #  mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
+  #end
+
   post '/graphql', to: 'graphql#execute'
+
+  root 'welcome#index'
 
   # match 'path', :to => 'controller#action', :via => [:get, :post]
 

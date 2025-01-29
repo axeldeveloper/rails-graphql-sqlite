@@ -7,7 +7,7 @@ services:
       - ./db/:/root/db/
     stdin_open: true
     tty: true
-  
+
   redis:
     # image: redis/redis-stack-server:7.2.0-v6
     image: redis/redis-stack:latest
@@ -40,32 +40,32 @@ services:
     stdin_open: true
     ports:
       - "3000:3000"
-  
-  sidekiq:
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    container_name: ror_sidekiq
-    command: bundle exec sidekiq
-    environment:
-      - TZ=America/Sao_Paulo
-    volumes:
-      - .:/myapp
-    depends_on:
-      - redis
-      - app
-    env_file: .env
-    tty: true
-    stdin_open: true
 
-  
+  # sidekiq:
+  #   build:
+  #     context: .
+  #     dockerfile: ./Dockerfile
+  #   container_name: ror_sidekiq
+  #   command: bundle exec sidekiq
+  #   environment:
+  #     - TZ=America/Sao_Paulo
+  #   volumes:
+  #     - .:/myapp
+  #   depends_on:
+  #     - redis
+  #     - app
+  #   env_file: .env
+  #   tty: true
+  #   stdin_open: true
+
+
   # rubocop:
   #   build: .
   #   command: bundle exec rubocop --autocorrect
   #   volumes:
   #     - .:/myapp
 
-  
+
   # webserver:
   #   tty: true
   #   stdin_open: true

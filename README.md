@@ -2,8 +2,8 @@
 
 ![image](/screem/logo.png)
 
-# Peoject 
- - rails 
+# Peoject
+ - rails
  - sqlite
  - graphql
 
@@ -50,7 +50,7 @@ $ rails g graphql:object item
 # build
 $ docker compose build
 
-# run project 
+# run project
 $ docker compose up
 
 # setud db an migrations
@@ -64,7 +64,7 @@ $ docker compose run --rm app rails db:migrate RAILS_ENV=development
 
 $ docker compose run --rm app rails generate migration CreateAudits notification:string auditable:references{polymorphic}
 
-
+docker compose run --rm app bin/rails zeitwerk:check
 ```
 
 
@@ -92,7 +92,7 @@ $ docker compose run --rm app rails generate controller Api::V1::Author
 $ bundle exec rspec
 $ bundle exec rspec spec/models
 
-# or 
+# or
 
 $ docker compose run --rm app bundle exec rspec
 
@@ -109,7 +109,7 @@ $ docker compose run --rm app bundle exec rspec spec/queries/bool_list_spec.rb
 
 # Run rocop in docker
 ```sh
-docker compose run --rm rubocop 
+docker compose run --rm rubocop
 
 docker-compose run --rm rubocop --auto-correct
 
@@ -132,8 +132,8 @@ $ docker compose run --rm app bundle exec rake report:generate
 # Run a single spec file
 
 sudo bundle exec rspec spec/controllers/api/v1/books_controller_spec.rb
-sudo bundle exec rspec spec/controllers/api/v1/books_controller_spec.rb:62 
-sudo bundle exec rspec spec/controllers/api/v1/authos_controller_spec.rb:62 
+sudo bundle exec rspec spec/controllers/api/v1/books_controller_spec.rb:62
+sudo bundle exec rspec spec/controllers/api/v1/authos_controller_spec.rb:62
 
 $ bundle exec rspec spec/controllers/accounts_controller_spec.rb
 
