@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-echo "Instalando dependencias do nodejs para front."
-yarn install
+# echo "Instalando dependencias do nodejs para front."
+# yarn install
 
 # Adicione esta linha para instalar o Rubocop no contêiner
 echo "Instalar o Rubocop no contêiner"
