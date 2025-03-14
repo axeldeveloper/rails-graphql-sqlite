@@ -20,15 +20,17 @@ console_command = '/rails/bin/rails console'
 [env]
   RAILS_ENV = 'production'
   NODE_ENV = 'production'
-  DATABASE_URL = "sqlite3://db/production.sqlite3"
+  # DATABASE_URL = "sqlite3://db/production.sqlite3"
+  DATABASE_URL = "sqlite3:/mnt/volume/production.sqlite3"
+
 
 #[[statics]]
-  #guest_path = '/rails/public'
+  # guest_path = '/rails/public'
   # url_prefix = '/'
 
-#[mounts]
-#  source = "sqlite3_volume"
-#  destination = "/mnt/volume"
+[mounts]
+  source = "lite_volume_meu_db"
+  destination = "/mnt/volume"
 
 [[vm]]
   memory = '1gb'
