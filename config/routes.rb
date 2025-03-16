@@ -19,6 +19,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      
+      get 'configs', to: 'configs#index'
+      
       resources :books do
         collection do
           get '/genre/:genre(/:status)', to: 'books#categories', as: 'filter'
