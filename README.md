@@ -1,4 +1,4 @@
-# Rails and Graphql
+'# Rails and Graphql
 
 ![image](/screem/logo.png)
 
@@ -28,6 +28,7 @@ $ bundle install
 
 $ rails generate graphql:install
 
+# generate model
 $ rails generate model Author first_name:string last_name:string date_of_birth:date --no-test-framework
 
 $ rails generate model Book title:string author:references publication_date:integer genre:string --no-test-framework
@@ -67,6 +68,12 @@ $ docker compose run --rm app rails db:migrate RAILS_ENV=development
 $ docker compose run --rm app rails generate migration CreateAudits notification:string auditable:references{polymorphic}
 
 docker compose run --rm app bin/rails zeitwerk:check
+
+
+# Rails generator
+$ docker compose run --rm app rails generate controller Api::V1::Author
+
+
 ```
 
 
@@ -82,11 +89,6 @@ $ docker compose run --rm app rails generate rspec:model book
 $ docker compose run --rm app bundle exec rspec spec/models/author_spec.rb
 ```
 
-# Rails generator
-```sh
-
-$ docker compose run --rm app rails generate controller Api::V1::Author
-```
 
 
 # Default: Run all spec files (i.e., those matching spec/**/*_spec.rb)
@@ -160,6 +162,46 @@ flyctl secrets set DATABASE_URL="postgres://usuario:senha@host:porta/database"
 cd
 flyctl ssh console -C "bin/rails db:seed"
 fly status
+
+fly volumes create lite_volume_meu_db -r gig -n 1
+fly regions list
+fly ssh console -a <app_name>
+
+
+# Arquivo de exemplo fly.toml
+
+```toml
+app = "rails-graphql-sqlite"
+
+[build]
+  builder = "paketobuildpacks/builder:base"
+
+[deploy]
+  release_command = "bundle exec rails db:migrate"
+
+[mounts]
+  source = "lite_volume_meu_db"
+  destination = "/app/db"
+
+[[services]]
+  internal_port = 3000
+  processes = ["app"]
+  protocol = "tcp"
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
+
+  [[services.concurrency]]
+    type = "machine"
+    hard_limit = 1000
+    soft_limit = 100
+
+```
 
 
 
