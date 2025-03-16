@@ -28,6 +28,7 @@ gem 'bootsnap', require: false
 gem "sprockets-rails"  # Opção 1 (mais comum)
 gem "sassc-rails"
 
+gem 'pg'
 
 group :development do
   gem 'web-console'
