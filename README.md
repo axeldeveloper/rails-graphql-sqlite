@@ -150,9 +150,11 @@ $ docker compose run --rm app bundle exec rake report:generate
 ```
 
 # Deploy Fly.io
+```sh
+# login 
+$ flyctl auth login
 
-flyctl auth login
-flyctl apps create
+$ flyctl apps create
 
 flyctl deploy
 flyctl ssh console
@@ -165,7 +167,22 @@ fly status
 
 fly volumes create lite_volume_meu_db -r gig -n 1
 fly regions list
-fly ssh console -a <app_name>
+fly ssh console -a rails-graphql-sqlite
+
+fly ssh console -a
+
+fly logs -a rails-graphql-sqlite
+
+Volume vol_v88l6pllg9lkyp7v
+
+fly m destroy vol_v88l6pllg9lkyp7v
+
+fly volumes destroy vol_v88l6pllg9lkyp7v
+
+
+```
+
+
 
 
 # Arquivo de exemplo fly.toml
