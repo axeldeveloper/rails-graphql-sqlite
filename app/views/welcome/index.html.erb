@@ -1,3 +1,9 @@
-<h1>Welcome to My Rails App!</h1>
-<p>This is the index page for the WelcomeController.</p>
-<p>Today is <%= Date.today.strftime("%A, %B %d, %Y") %>.</p>
+<div class="welcome-container">
+  <div class="welcome-content">
+    <h1>Bem-vindo à sua Aplicação Rails!</h1>
+    <p>Esta é a página de boas-vindas da sua aplicação. Comece a explorar e construir coisas incríveis!</p>
+    <p>This is the index page for the WelcomeController.</p>
+    <p>Today is <%= Date.today.strftime("%A, %B %d, %Y") %>.</p>
+    <%= link_to "Começar", "#", class: "welcome-button" %>
+  </div>
+</div>
