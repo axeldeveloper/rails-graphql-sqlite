@@ -153,15 +153,23 @@ $ docker compose run --rm app bundle exec rake report:generate
 ```sh
 # login 
 $ flyctl auth login
-
+# create app
 $ flyctl apps create
+# publish app
+$  flyctl deploy
 
-flyctl deploy
 flyctl ssh console
+
 flyctl logs
+
 flyctl run "bin/rails db:migrate"
+
 flyctl secrets set DATABASE_URL="postgres://usuario:senha@host:porta/database"
-cd
+
+
+flyctl secrets set DATABASE_URL="postgres://avnadmin:AVNS_hQ8vgkhpEJJ6O5h4-r7@pg-mss5g-axelpatton-mss.i.aivencloud.com:17489/defaultdb?sslmode=require"
+
+
 flyctl ssh console -C "bin/rails db:seed"
 fly status
 

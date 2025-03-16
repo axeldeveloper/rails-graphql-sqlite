@@ -27,15 +27,17 @@ services:
       dockerfile: ./Dockerfile
     # command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
     container_name: ror_app
+    
     environment:
       - TZ=America/Sao_Paulo
+      - RAILS_ENV=development
+    env_file: .env
     volumes:
       - .:/myapp
     tmpfs: /app/tmp
     depends_on:
       - db
       - redis
-    env_file: .env
     tty: true
     stdin_open: true
     ports:
