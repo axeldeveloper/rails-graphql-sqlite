@@ -21,6 +21,15 @@ module GraphqlTest
     config.active_job.queue_adapter = :sidekiq
     config.assets.initialize_on_precompile = true
 
+    # Using Session Middlewares
+
+    # This also configures session_options for use below
+    config.session_store :cookie_store, key: "_lite_app_session"
+    # Required for all session management (regardless of session_store)
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use config.session_store, config.session_options
+
+
 
     logger           = ActiveSupport::Logger.new($stdout)
     logger.formatter = config.log_formatter

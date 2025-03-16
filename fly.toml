@@ -24,7 +24,7 @@ console_command = '/rails/bin/rails console'
   DATABASE_URL = 'sqlite3:///mnt/name/production.sqlite'
 
 #[[statics]]
-  #guest_path = '/rails/public'
+  # guest_path = '/rails/public'
   # url_prefix = '/'
 
 [mounts]

@@ -2,10 +2,13 @@
 
 ![image](/screem/logo.png)
 
-# Peoject
- - rails
- - sqlite
- - graphql
+# Project
+
+- rails
+
+- sqlite
+
+- graphql
 
 - ...
 
@@ -28,7 +31,6 @@ $ rails generate graphql:install
 $ rails generate model Author first_name:string last_name:string date_of_birth:date --no-test-framework
 
 $ rails generate model Book title:string author:references publication_date:integer genre:string --no-test-framework
-
 
 
 
@@ -69,7 +71,7 @@ docker compose run --rm app bin/rails zeitwerk:check
 
 
 
-# Test run in docker
+# Rails app Test run in docker
 ```sh
 $ docker compose run --rm app rails generate rspec:install
 
@@ -80,7 +82,7 @@ $ docker compose run --rm app rails generate rspec:model book
 $ docker compose run --rm app bundle exec rspec spec/models/author_spec.rb
 ```
 
-# rails generator
+# Rails generator
 ```sh
 
 $ docker compose run --rm app rails generate controller Api::V1::Author
@@ -118,18 +120,9 @@ docker compose run --rm rubocop bundle exec rubocop --auto-correct
 
 ```
 
-# Custom Rake
-```sh
-$ docker compose run --rm app bundle exec rake db:seed:single SEED=author_seed
-
-$ docker compose run --rm app bundle exec rake report:generate
-
-```
-
-
-
 
 # Run a single spec file
+```sh
 
 sudo bundle exec rspec spec/controllers/api/v1/books_controller_spec.rb
 sudo bundle exec rspec spec/controllers/api/v1/books_controller_spec.rb:62
@@ -146,15 +139,39 @@ sudo bundle exec rspec spec/controllers/api/v1/books_controller_spec.rb
 $ bundle exec rspec --help
 
 
+# Custom Rake
+
+$ docker compose run --rm app bundle exec rake db:seed:single SEED=author_seed
+
+$ docker compose run --rm app bundle exec rake report:generate
+
+```
+
+# Deploy Fly.io
+
+flyctl auth login
+flyctl apps create
+
+flyctl deploy
+flyctl ssh console
+flyctl logs
+flyctl run "bin/rails db:migrate"
+flyctl secrets set DATABASE_URL="postgres://usuario:senha@host:porta/database"
+cd
+flyctl ssh console -C "bin/rails db:seed"
+fly status
+
+
+
 # Examples project
 
-[link - postgres](https://selleo.com/blog/how-to-setup-a-project-with-ruby-on-rails-postresql-and-graphql)
+[Postgres](https://selleo.com/blog/how-to-setup-a-project-with-ruby-on-rails-postresql-and-graphql)
 
-[link - rspec](https://semaphoreci.com/community/tutorials/getting-started-with-rspec)
+[Rspec](https://semaphoreci.com/community/tutorials/getting-started-with-rspec)
 
-[link- GraphQL on Rails](https://evilmartians.com/chronicles/graphql-on-rails-3-on-the-way-to-perfection)
+[GraphQL on Rails](https://evilmartians.com/chronicles/graphql-on-rails-3-on-the-way-to-perfection)
 
-[link - Ruby on Rails GraphQL API](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-ruby-on-rails-graphql-api)
+[Ruby on Rails GraphQL API](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-ruby-on-rails-graphql-api)
 
 # Example
 
