@@ -2,6 +2,8 @@
 
 require 'rails_helper'
 
+# teste para o modelo Book
+# Verifica se o modelo Book está funcionando corretamente
 RSpec.describe Book, type: :model do
   describe 'validations' do
     subject do
