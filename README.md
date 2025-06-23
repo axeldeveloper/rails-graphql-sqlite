@@ -1,29 +1,47 @@
+<<<<<<< HEAD
 '# Rails and Graphql
+=======
+# ✅ Rails and Graphql
+
+# ✅ Project
+
+  - rails
+  - sqlite
+  - graphql
+  - spec
+  - ...
+>>>>>>> d44afbd (refactor(test) add test enum book)
 
 ![image](/screem/logo.png)
 
-# Project
-
-- rails
-
-- sqlite
-
-- graphql
-
-- ...
-
-# Create project local
+# ✅ ASDF
 ```sh
+asdf plugin add ruby
+asdf install ruby <version>  # e.g., asdf install ruby 3.2.0
+asdf global ruby <version>   # or asdf local ruby <version>
+```
+
+
+# ✅ Create project local
+```sh
+# install bundler gems
 $ gem install bundler
 
-$ bundle install rails
-
+# create project
 $ rails new graphql_test --database=postgresql
 
-$ rake db:create
+# install gems
+$ bundle install rails
 
 $ add gem 'graphql'
 
+$ rake db:create
+
+$ rake db:migrate
+
+$ rake db:seed
+# or
+$ rails db:create db:migrate db:seed
 $ bundle install
 
 $ rails generate graphql:install
@@ -33,21 +51,13 @@ $ rails generate model Author first_name:string last_name:string date_of_birth:d
 
 $ rails generate model Book title:string author:references publication_date:integer genre:string --no-test-framework
 
-
-
-$ rake db:migrate
-
-$ rake db:seed
-
-or rails db:create db:migrate db:seed
-
 $ rails g graphql:object user
 
 $ rails g graphql:object item
 
 ```
 
-# Run Docker commands
+# ✅ Run docker commands
 ```sh
 
 # build
@@ -67,6 +77,7 @@ $ docker compose run --rm app rails db:migrate RAILS_ENV=development
 
 $ docker compose run --rm app rails generate migration CreateAudits notification:string auditable:references{polymorphic}
 
+<<<<<<< HEAD
 docker compose run --rm app bin/rails zeitwerk:check
 
 
@@ -74,27 +85,30 @@ docker compose run --rm app bin/rails zeitwerk:check
 $ docker compose run --rm app rails generate controller Api::V1::Author
 
 
+=======
+$ docker compose run --rm app bin/rails zeitwerk:check
+>>>>>>> d44afbd (refactor(test) add test enum book)
 ```
 
 
 
-# Rails app Test run in docker
+# ✅ Rails app Test
+## ✅ Default: Run all spec files (i.e., those matching spec/**/*_spec.rb)
 ```sh
+
+# ⚠️ In docker
 $ docker compose run --rm app rails generate rspec:install
 
-$ bundle exec rspec spec --tag slow_test  #skip slow tests
-# run test in model
 $ docker compose run --rm app rails generate rspec:model book
 
 $ docker compose run --rm app bundle exec rspec spec/models/author_spec.rb
+<<<<<<< HEAD
 ```
 
+=======
+>>>>>>> d44afbd (refactor(test) add test enum book)
 
 
-# Default: Run all spec files (i.e., those matching spec/**/*_spec.rb)
-```sh
-$ bundle exec rspec
-$ bundle exec rspec spec/models
 
 # or
 
@@ -107,8 +121,37 @@ $ docker compose run --rm app bundle exec rspec spec/models/book_spec.rb
 $ docker compose run --rm app bundle exec rspec spec/models/author_spec.rb
 
 $ docker compose run --rm app bundle exec rspec spec/queries/bool_list_spec.rb
+
+
+
+
+# ⚠️ In local
+
+$ bundle exec rspec
+$ bundle exec rspec spec/models
+
+$ bundle exec rspec spec/models/book_spec.rb
+
+$ bundle exec rspec spec/models/author_spec.rb
+
+$ bundle exec rspec spec/queries/bool_list_spec.rb
+
+$ bundle exec rspec spec --tag slow_test  #skip slow tests
+# run test in model
+
 ```
 
+
+
+
+
+# ✅ Rails generator
+```sh
+
+# ⚠️ In docker
+$ docker compose run --rm app rails generate controller Api::V1::Author
+
+```
 
 
 # Run rocop in docker
@@ -168,6 +211,13 @@ flyctl secrets set DATABASE_URL="postgres://usuario:senha@host:porta/database"
 
 
 flyctl ssh console -C "bin/rails db:seed"
+<<<<<<< HEAD
+=======
+flyctl ssh console -C "bin/rails db:migrate"
+
+
+fly ssh console -a rails-graphql-sqlite
+>>>>>>> d44afbd (refactor(test) add test enum book)
 
 fly status
 

@@ -8,7 +8,20 @@ Bundler.require(*Rails.groups)
 
 module GraphqlTest
   class Application < Rails::Application
-    Rails.autoloaders.log!
+
+    # Carrega todos os log
+    # Rails.autoloaders.log!
+
+    Rails.autoloaders.each do |autoloader|
+        # autoloader.logger =  nil
+        autoloader.logger = Rails.logger
+
+        #custom_logger = Logger.new(STDOUT)
+        #custom_logger.level = Logger::DEBUG
+        #autoloader.logger = custom_logger
+    end
+
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
     config.active_record.verify_foreign_keys_for_fixtures = false
@@ -30,9 +43,5 @@ module GraphqlTest
     config.middleware.use config.session_store, config.session_options
 
 
-
-    logger           = ActiveSupport::Logger.new($stdout)
-    logger.formatter = config.log_formatter
-    config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 end

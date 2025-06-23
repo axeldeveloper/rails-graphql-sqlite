@@ -43,4 +43,10 @@ Rails.application.configure do
   config.active_record.verbose_query_logs = true
   config.active_job.verbose_enqueue_logs = true
   config.action_controller.raise_on_missing_callback_actions = true
+
+
+  logger = ActiveSupport::Logger.new($stdout)
+  logger.formatter = config.log_formatter
+  config.logger = ActiveSupport::TaggedLogging.new(logger)
+
 end
